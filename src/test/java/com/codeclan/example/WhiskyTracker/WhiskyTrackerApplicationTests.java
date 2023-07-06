@@ -60,6 +60,27 @@ public class WhiskyTrackerApplicationTests {
 		assertEquals(15, allWhiskies.size());
 	}
 
+	@Test
+	public void canFindAllDistilleriesWithWhiskyOfCertainAge() {
+		List<Distillery> foundDistilleries = distilleryRepository.findAll();
+		List<Distillery> distilleriesWith12YearOld = new ArrayList<>();
+		for (Distillery distillery : foundDistilleries) {
+			for (Whisky whisky : distillery.getWhiskies()) {
+				if (whisky.getAge() == 12) {
+					distilleriesWith12YearOld.add(distillery);
+				}
+			}
+		}
+		List<String> uniqueDistilleriesWith12YearOld = new ArrayList<>();
+		for (Distillery distillery : distilleriesWith12YearOld) {
+			if (!uniqueDistilleriesWith12YearOld.contains(distillery.getName())) {
+				uniqueDistilleriesWith12YearOld.add(distillery.getName());
+			}
+		}
+		assertEquals(6, uniqueDistilleriesWith12YearOld.size());
+
+	}
+
 
 
 
