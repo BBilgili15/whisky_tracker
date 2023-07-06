@@ -16,4 +16,6 @@ public interface WhiskyRepository extends JpaRepository<Whisky, Long> {
 
 
 
+
+
 }
